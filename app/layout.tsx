@@ -4,6 +4,7 @@ import "./globals.css";
 import Sidebar from "@/components/Sidebar";
 import Player from "@/components/player/Player";
 import { AuthProvider } from "@/components/auth/AuthContext";
+import ClientWrapper from "@/components/ClientWrapper";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -29,22 +30,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.className} min-h-screen`}>
         <AuthProvider>
-          <div className="flex h-screen overflow-hidden">
-            {/* Sidebar */}
-            <div className="hidden md:block w-[300px] h-full p-2">
-              <Sidebar />
-            </div>
-
-            {/* Main Content */}
-            <main className="flex-1 overflow-y-auto m-2 rounded-2xl glass border-none">
-              {children}
-            </main>
-          </div>
-
-          {/* Persistent Player */}
-          <div className="fixed bottom-0 left-0 right-0 h-[90px] glass border-t-0 z-50 backdrop-blur-xl">
-            <Player />
-          </div>
+          <ClientWrapper>
+            {children}
+          </ClientWrapper>
         </AuthProvider>
       </body>
     </html>
