@@ -10,7 +10,8 @@ const withPWA = withPWAInit({
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    output: 'export',
+    // Only use 'export' for GitHub Pages (when not on Vercel)
+    output: process.env.VERCEL ? undefined : 'export',
     images: {
         unoptimized: true,
     },
